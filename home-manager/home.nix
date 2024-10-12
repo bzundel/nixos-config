@@ -11,15 +11,13 @@ in
 
   home.packages = with pkgs; [
     #meta
-    ubuntu_font_family
+    ubuntu_font_family # TODO move to fonts section of nixos config
 
     #development
     jetbrains.rider
     pgadmin4-desktopmode
     direnv
     file
-    mono
-    omnisharp-roslyn
     dotnet-sdk_8
     ghc
 
@@ -49,14 +47,12 @@ in
     kdePackages.kleopatra
     fzf
     thunderbird
+    dmenu
+    st
 
     #games
     steam
-    starsector
-    xonotic
-    openttd
     lutris
-    nudoku
     prismlauncher
     
     #gnome
@@ -161,7 +157,6 @@ in
       nnoremap <C-f> :NERDTreeFind<CR>
 
       autocmd StdinReadPre * let s:std_in=1
-
       autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
       autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
     '';
@@ -218,17 +213,14 @@ in
     };
   };
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  #xsession.windowManager.xmonad = {
+  #  enable = true;
+  #  config = "${builtins.path { path = "${config.home.homeDirectory}/repos/nixos-config/config/xmonad.hs"; }}";
+  #  enableContribAndExtras = true;
+  #};
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+  home.file = {
+    #".xmonad/xmonad.hs".source = "${config.home.homeDirectory}/repos/nixos-config/config/xmonad.hs";
   };
 
   home.sessionVariables = {

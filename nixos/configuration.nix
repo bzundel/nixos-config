@@ -17,17 +17,6 @@
     dns = "default";
   };
   
-  # TODO un-hardcode path to ovpn file
-  services.openvpn.servers = {
-    rz_muenster = {
-      config = ''
-        config /home/bened/Documents/Work/RZ_Muenster.ovpn
-      '';
-      autoStart = false;
-      updateResolvConf = true;
-    };
-  };
-
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -48,8 +37,26 @@
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = false;
+
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+  };
+
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.videoDrivers = [ "intel" ];
+
+
+  # TODO un-hardcode path to ovpn file
+  services.openvpn.servers = {
+    rz_muenster = {
+      config = ''
+        config /home/bened/Documents/Work/RZ_Muenster.ovpn
+      '';
+      autoStart = false;
+      updateResolvConf = true;
+    };
+  };
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
