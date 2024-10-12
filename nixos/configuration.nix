@@ -1,16 +1,40 @@
-{ config, pkgs, ... }:
-
+{ inputs, outputs, lib, config, pkgs, ... }:
 {
-  imports =
-    [
-      /etc/nixos/hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
     ];
+
+    config = {
+      allowUnfree = true;
+    };
+  };
+
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      experimental-features = "nix-command flakes";
+      flake-registry = "";
+      nix-path = config.nix.nixPath;
+    };
+
+    channel.enable = false;
+
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "cora";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.networkmanager = {
     enable = true;
@@ -44,6 +68,7 @@
   };
 
   services.xserver.desktopManager.gnome.enable = true;
+
   services.xserver.videoDrivers = [ "intel" ];
 
 
@@ -78,8 +103,6 @@
 
   services.printing.enable = true;
 
-  services.udisks2.enable = true; # for calibre
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -91,8 +114,7 @@
 
   hardware.opengl.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   users.users.bened = {
     isNormalUser = true;
@@ -103,17 +125,12 @@
   };
 
   programs.firefox.enable = true;
-
   programs.zsh.enable = true;
 
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
   };
 
   services.postgresql = {
@@ -127,42 +144,19 @@
     git
     wget
     vim
-    gnome.gnome-terminal 
 
     hunspell
     hunspellDicts.en_US
     hunspellDicts.de_DE
   ];
 
+  fonts.packages = with pkgs; [
+    ubuntu_font_family
+  ];
+
   security.wrappers = {
     fusermount.source = "${pkgs.fuse}/bin/fusermount";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

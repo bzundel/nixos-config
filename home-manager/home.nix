@@ -1,18 +1,30 @@
-{ config, pkgs, ... }:
-
+{ inputs, outputs, lib, config, pkgs, ... }:
 let
-  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+  unstable = inputs.nixpkgs-unstable;
 in
 {
+  imports = [
+    outputs.homeManagerModules.gnome-dash-to-dock
+  ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+    ];
+
+    config = {
+      allowUnfree = true;
+    };
+  };
+
   home.username = "bened";
   home.homeDirectory = "/home/bened";
 
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
-    #meta
-    ubuntu_font_family # TODO move to fonts section of nixos config
-
     #development
     jetbrains.rider
     pgadmin4-desktopmode
@@ -196,7 +208,7 @@ in
     extensions = [
       { package = pkgs.gnomeExtensions.dash-to-dock; }
       { package = pkgs.gnomeExtensions.vitals; }
-      { package = unstable.gnomeExtensions.systemd-manager; }
+      { package = pkgs.unstable.gnomeExtensions.systemd-manager; }
     ];
   };
 
@@ -270,13 +282,5 @@ in
     };
   };
 
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   programs.home-manager.enable = true;
-  programs.home-manager.path = "$HOME/repos/home-manager";
 }
