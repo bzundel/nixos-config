@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-
 let
   cfg = config.programs.gnome-dash-to-dock;
-in {
+in
+{
   options.programs.gnome-dash-to-dock = {
     enable = mkEnableOption "GNOME dash to dock extension customization";
 
@@ -56,7 +60,6 @@ in {
         Disable showing overview on startup.
       '';
     };
-
 
     dashMaxIconSize = mkOption {
       type = types.int;

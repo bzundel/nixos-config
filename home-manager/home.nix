@@ -1,11 +1,16 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   unstable = inputs.nixpkgs-unstable;
 in
 {
-  imports = [
-    outputs.homeManagerModules.gnome-dash-to-dock
-  ];
+  imports = [ outputs.homeManagerModules.gnome-dash-to-dock ];
 
   nixpkgs = {
     overlays = [
@@ -61,12 +66,13 @@ in
     thunderbird
     dmenu
     st
+    busybox
 
     #games
     steam
     lutris
     prismlauncher
-    
+
     #gnome
     gnome.gnome-tweaks
   ];
@@ -117,62 +123,62 @@ in
     terminal = "screen-256color";
   };
 
-  programs.vim = 
-  let
-    omnisharp-vim = pkgs.vimUtils.buildVimPlugin {
-      name = "omnisharp-vim";
-      src = pkgs.fetchFromGitHub {
-        owner = "OmniSharp";
-        repo = "omnisharp-vim";
-        rev = "f9c5d3e3375e8b5688a4506e813cb21bdc7329b1";
-        hash = "sha256-z3Dgrm9pNWkvfShPmB9O8TqpY592sk1W722zduOSing=";
+  programs.vim =
+    let
+      omnisharp-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "omnisharp-vim";
+        src = pkgs.fetchFromGitHub {
+          owner = "OmniSharp";
+          repo = "omnisharp-vim";
+          rev = "f9c5d3e3375e8b5688a4506e813cb21bdc7329b1";
+          hash = "sha256-z3Dgrm9pNWkvfShPmB9O8TqpY592sk1W722zduOSing=";
+        };
       };
-    };   
-  in
-  {
-    enable = true;
-    defaultEditor = true;
+    in
+    {
+      enable = true;
+      defaultEditor = true;
 
-    plugins = with pkgs.vimPlugins; [
-      vim-nix
-      vim-lastplace
-      YouCompleteMe
-      ReplaceWithRegister
-      vim-peekaboo
-      nerdtree
-      vim-polyglot
-      #omnisharp-vim # TODO fix this plugin?
-    ];
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        vim-lastplace
+        YouCompleteMe
+        ReplaceWithRegister
+        vim-peekaboo
+        nerdtree
+        vim-polyglot
+        #omnisharp-vim # TODO fix this plugin?
+      ];
 
-    extraConfig = ''
-      set nocompatible
-      set backspace=indent,eol,start
-      syntax on
-      set number relativenumber
-      set scrolloff=10
-      set wrap
-      set hlsearch
-      set incsearch
-      set showcmd
-      set showmode
-      set showmatch
-      set background=dark
+      extraConfig = ''
+        set nocompatible
+        set backspace=indent,eol,start
+        syntax on
+        set number relativenumber
+        set scrolloff=10
+        set wrap
+        set hlsearch
+        set incsearch
+        set showcmd
+        set showmode
+        set showmatch
+        set background=dark
 
-      let mapleader=","
+        let mapleader=","
 
-      nnoremap <leader>, ``
-      map <space> /
+        nnoremap <leader>, ``
+        map <space> /
 
-      nnoremap <leader>n :NERDTreeFocus<CR>
-      nnoremap <C-n> :NERDTree<CR>
-      nnoremap <C-t> :NERDTreeToggle<CR>
-      nnoremap <C-f> :NERDTreeFind<CR>
+        nnoremap <leader>n :NERDTreeFocus<CR>
+        nnoremap <C-n> :NERDTree<CR>
+        nnoremap <C-t> :NERDTreeToggle<CR>
+        nnoremap <C-f> :NERDTreeFind<CR>
 
-      autocmd StdinReadPre * let s:std_in=1
-      autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-      autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
-    '';
-  };
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+        autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+      '';
+    };
 
   programs.vscode = {
     enable = true;
@@ -191,9 +197,7 @@ in
     userName = "Benedikt Zundel";
 
     extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
+      credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
     };
   };
 
@@ -269,17 +273,17 @@ in
       Description = "Mount OneDrive to home using rclone";
     };
 
-    Service = 
-    let 
-      onedriveDir = "/home/bened/cloud";
-    in
-    {
-      Type = "simple";
-      ExecStart = "${pkgs.rclone}/bin/rclone mount --vfs-cache-mode writes onedrive:/Personal/KeePassDatabase ${onedriveDir}";
-      ExecStop = "/run/wrappers/bin/fusermount -u ${onedriveDir}";
-      Restart = "on-failure";
-      RestartSec = "10";
-    };
+    Service =
+      let
+        onedriveDir = "/home/bened/cloud";
+      in
+      {
+        Type = "simple";
+        ExecStart = "${pkgs.rclone}/bin/rclone mount --vfs-cache-mode writes onedrive:/Personal/KeePassDatabase ${onedriveDir}";
+        ExecStop = "/run/wrappers/bin/fusermount -u ${onedriveDir}";
+        Restart = "on-failure";
+        RestartSec = "10";
+      };
   };
 
   programs.home-manager.enable = true;

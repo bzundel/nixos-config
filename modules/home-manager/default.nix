@@ -1,3 +1,1 @@
-{
-  gnome-dash-to-dock = import ./gnome-dash-to-dock.nix;
-}
+{ gnome-dash-to-dock = import ./gnome-dash-to-dock.nix; }
