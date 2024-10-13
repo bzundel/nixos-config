@@ -98,6 +98,7 @@ in
     dconf.settings."org/gnome/shell/extensions/dash-to-dock" = {
       extend-height = cfg.extendHeight;
       dock-fixed = cfg.dockFixed;
+      dock-position = cfg.dockPosition;
       hot-keys = cfg.hotKeys;
       apply-custom-theme = cfg.applyCustomTheme;
       disable-overview-on-startup = cfg.disableOverviewOnStartup;
