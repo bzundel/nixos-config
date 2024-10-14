@@ -66,7 +66,6 @@ in
     thunderbird
     dmenu
     st
-    busybox
 
     #games
     steam
