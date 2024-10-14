@@ -1,3 +1,4 @@
+# FIXME rewrite the descriptions
 {
   config,
   lib,
@@ -53,6 +54,14 @@ in
       '';
     };
 
+    shrinkDash = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Shrink the dash icons to save space.
+      '';
+    };
+
     disableOverviewOnStartup = mkOption {
       type = types.bool;
       default = false;
@@ -101,6 +110,7 @@ in
       dock-position = cfg.dockPosition;
       hot-keys = cfg.hotKeys;
       apply-custom-theme = cfg.applyCustomTheme;
+      custom-theme-shrink = cfg.shrinkDash;
       disable-overview-on-startup = cfg.disableOverviewOnStartup;
       dash-max-icon-size = cfg.dashMaxIconSize;
       show-mounts = cfg.showMounts;
