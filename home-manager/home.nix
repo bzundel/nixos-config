@@ -84,6 +84,7 @@ in
     disableOverviewOnStartup = true;
     dockFixed = true;
     dockPosition = "LEFT";
+    shrinkDash = true;
     hotKeys = false;
     showMounts = false;
     showMountsNetwork = false;
