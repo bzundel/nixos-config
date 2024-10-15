@@ -63,6 +63,7 @@ in
     kdePackages.kleopatra
     fzf
     thunderbird
+    gnupg
 
     #games
     steam
