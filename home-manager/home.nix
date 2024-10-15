@@ -38,7 +38,6 @@ in
     ghc
 
     #communication
-    evolution
     signal-desktop
     discord
     element-desktop
