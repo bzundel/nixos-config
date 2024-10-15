@@ -180,12 +180,9 @@ in
 
   programs.vscode = {
     enable = true;
-
+    package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
-      ms-dotnettools.csharp
-      ms-dotnettools.vscodeintellicode-csharp
-      ms-dotnettools.csdevkit
     ];
   };
 
