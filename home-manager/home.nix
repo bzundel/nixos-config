@@ -34,7 +34,6 @@ in
     jetbrains.rider
     pgadmin4-desktopmode
     direnv
-    file
     dotnet-sdk_8
     ghc
 
@@ -43,7 +42,6 @@ in
     signal-desktop
     discord
     element-desktop
-    simplex-chat-desktop
 
     #entertainment
     spotify
@@ -57,6 +55,7 @@ in
     rclone
     xclip
     unzip
+    file
     wineWowPackages.stable
     winetricks
     remmina
@@ -64,8 +63,6 @@ in
     kdePackages.kleopatra
     fzf
     thunderbird
-    dmenu
-    st
 
     #games
     steam
