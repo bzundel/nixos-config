@@ -6,6 +6,8 @@
 
   services.xserver.desktopManager.gnome.enable = true;
 
+  services.xserver.windowManager.dwm.enable = true;
+
   services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver.xkb = {

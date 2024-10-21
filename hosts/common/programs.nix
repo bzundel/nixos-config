@@ -5,6 +5,11 @@
     wget
     vim
 
+    dmenu
+    st
+    slstatus
+    slock
+
     hunspell
     hunspellDicts.en_US
     hunspellDicts.de_DE
