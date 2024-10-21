@@ -36,6 +36,8 @@ in
     direnv
     dotnet-sdk_8
     ghc
+    elixir
+    inotify-tools
 
     #communication
     signal-desktop
@@ -63,6 +65,7 @@ in
     fzf
     thunderbird
     gnupg
+    zathura
 
     #games
     steam
@@ -144,6 +147,7 @@ in
         vim-peekaboo
         nerdtree
         vim-polyglot
+        vim-elixir
         #omnisharp-vim # TODO fix this plugin?
       ];
 
@@ -182,6 +186,9 @@ in
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
+      elixir-lsp.vscode-elixir-ls
+      bradlc.vscode-tailwindcss
+      stefanjarina.vscode-eex-snippets
     ];
   };
 
