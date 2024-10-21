@@ -38,6 +38,8 @@ in
     ghc
     elixir
     inotify-tools
+    gnumake
+    gcc
 
     #communication
     signal-desktop
