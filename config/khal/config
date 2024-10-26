@@ -1,0 +1,27 @@
+[calendars]
+	[[personal]]
+		path = ~/.calendars/personal
+		color = light green
+		priority = 20
+	[[university]]
+		path = ~/.calendars/university
+		color = light blue
+		priority = 10
+
+[default]
+	default_calendar = personal
+	highlight_event_days = True
+	show_all_days = True
+	timedelta = 7d
+
+[locale]
+	dateformat = %d/%m/%Y
+	datetimeformat = %d/%m/%Y %H:%M
+	firstweekday = 0
+	longdateformat = %d/%m/%Y
+	longdatetimeformat = %d/%m/%Y %H:%M
+	timeformat = %H:%M
+	weeknumbers = left
+
+[view]
+	dynamic_days = True

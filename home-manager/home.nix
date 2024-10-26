@@ -68,6 +68,9 @@ in
     thunderbird
     gnupg
     zathura
+    khal
+    pass
+    vdirsyncer
 
     #games
     steam
@@ -80,16 +83,26 @@ in
 
   programs.gnome-dash-to-dock = {
     enable = true;
-    extendHeight = true;
-    dashMaxIconSize = 32;
-    disableOverviewOnStartup = true;
-    dockFixed = true;
-    dockPosition = "LEFT";
-    shrinkDash = true;
-    hotKeys = false;
-    showMounts = false;
-    showMountsNetwork = false;
-    showTrash = false;
+
+    appearance = {
+      extendHeight = true;
+      dashMaxIconSize = 32;
+      dockPosition = "LEFT";
+      shrinkDash = true;
+      applyCustomTheme = false;
+    };
+
+    behavior = {
+      hotKeys = false;
+      disableOverviewOnStartup = true;
+      dockFixed = true;
+    };
+
+    show = {
+      mounts = false;
+      mountsNetwork = false;
+      trash = false;
+    };
   };
 
   programs.zsh = {
@@ -150,6 +163,7 @@ in
         nerdtree
         vim-polyglot
         vim-elixir
+        ctrlp-vim
         #omnisharp-vim # TODO fix this plugin?
       ];
 
@@ -240,7 +254,14 @@ in
   #};
 
   home.file = {
-    #".xmonad/xmonad.hs".source = "${config.home.homeDirectory}/repos/nixos-config/config/xmonad.hs";
+    ".config/khal/config" = {
+      source = ../config/khal/config;
+    };
+
+    ".vdirsyncer/config" = {
+      source = ../config/vdirsyncer/config;
+    };
+
   };
 
   home.sessionVariables = {
