@@ -8,6 +8,7 @@
 }:
 let
   unstable = inputs.nixpkgs-unstable;
+  #swaybarStatus = pkgs.writeShellScriptBin "status.sh" (builtins.readFile ../config/sway/status.sh); # this seems weird and redundant
 in
 {
   imports = [ outputs.homeManagerModules.gnome-dash-to-dock ];
@@ -223,6 +224,7 @@ in
     extraConfig = {
       credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       pull.rebase = false;
+      core.editor = "vim";
     };
   };
 
@@ -253,12 +255,6 @@ in
       font = "Ubuntu Mono Bold 12";
     };
   };
-
-  #xsession.windowManager.xmonad = {
-  #  enable = true;
-  #  config = "${builtins.path { path = "${config.home.homeDirectory}/repos/nixos-config/config/xmonad.hs"; }}";
-  #  enableContribAndExtras = true;
-  #};
 
   home.file = {
     ".config/khal/config" = {
@@ -370,10 +366,10 @@ in
 
         "${mod}+Shift+s" = "exec swaylock -c 000000";
 
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -RTMIN+1 i3blocks";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -RTMIN+1 i3blocks";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -RTMIN+1 i3blocks";
+        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && pkill -RTMIN+1 i3blocks";
 
         "${mod}+b" = "splith";
         "${mod}+v" = "splitv";
