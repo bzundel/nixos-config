@@ -49,6 +49,7 @@ in
     #entertainment
     spotify
     calibre
+    newsboat
 
     #utilities
     keepassxc
