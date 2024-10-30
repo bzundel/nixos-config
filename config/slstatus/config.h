@@ -65,12 +65,12 @@ static const char unknown_str[] = "n/a";
  */
 
 static const char vol[] = "muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}'); \
-			 volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}'); \
-			 if [[ \"$muted\" == \"[MUTED]\" ]]; then \
-				 printf \"(MUT) %s%%\" $volume; \
-			 else \
-				 printf \"%s%%\" $volume; \
-			 fi";
+			 										volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}'); \
+													if [[ \"$muted\" == \"[MUTED]\" ]]; then \
+													  printf \"(MUT) %s%%\" $volume; \
+													else \
+													  printf \"%s%%\" $volume; \
+													fi";
 
 static const struct arg args[] = {
 	/* function format          argument */
