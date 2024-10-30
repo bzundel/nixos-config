@@ -73,6 +73,7 @@ in
     pass
     vdirsyncer
     alacritty
+    bc
 
     #games
     steam
