@@ -73,6 +73,7 @@ in
     pass
     vdirsyncer
     alacritty
+    gimp
 
     #games
     steam
