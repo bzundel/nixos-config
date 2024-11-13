@@ -72,8 +72,9 @@ in
     khal
     pass
     vdirsyncer
-    alacritty
-    bc
+    gimp
+    alsa-utils
+    flameshot
 
     #games
     steam
@@ -83,15 +84,10 @@ in
     #gnome
     gnome.gnome-tweaks
 
-    #dwm
+    #qtile
+    kitty
     dmenu
-    (pkgs.slstatus.override {
-      conf = builtins.readFile ../config/slstatus/config.h;
-    })
-    slock
-    st
-    sxhkd
-    xorg.xf86inputsynaptics # syndaemon
+    networkmanagerapplet
   ];
 
   programs.gnome-dash-to-dock = {
@@ -269,14 +265,18 @@ in
     ".vdirsyncer/config" = {
       source = ../config/vdirsyncer/config;
     };
-
-    ".dwm/autostart.sh" = {
-      source = ../config/dwm/autostart.sh;
-      executable = true;
+    
+    ".config/kitty/kitty.conf" = {
+      source = ../config/kitty/kitty.conf;
     };
 
-    ".config/sxhkd/sxhkdrc" = {
-      source = ../config/sxhkd/sxhkdrc;
+    ".config/qtile/config.py" = {
+      source = ../config/qtile/config.py;
+    };
+
+    ".config/qtile/autostart.sh" = {
+      source = ../config/qtile/autostart.sh;
+      executable = true;
     };
   };
 
@@ -290,6 +290,7 @@ in
     cursorTheme = {
       package = pkgs.yaru-theme;
       name = "Yaru";
+      size = 24;
     };
 
     font = {

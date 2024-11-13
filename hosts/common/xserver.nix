@@ -6,18 +6,12 @@
 
   services.xserver.desktopManager.gnome.enable = true;
 
-  services.xserver.windowManager.dwm = {
+  services.xserver.windowManager.qtile = {
     enable = true;
-
-    package = pkgs.dwm.override {
-        patches = [
-          (pkgs.fetchpatch {
-            url = "https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff";
-            hash = "sha256-mrHh4o9KBZDp2ReSeKodWkCz5ahCLuE6Al3NR2r2OJg=";
-          })
-        ];
-      };
-    };
+    extraPackages = python3Packages: with python3Packages; [
+      qtile-extras
+    ];
+  };
 
   services.xserver.videoDrivers = [ "intel" ];
 
