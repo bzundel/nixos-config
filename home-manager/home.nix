@@ -72,7 +72,6 @@ in
     khal
     pass
     vdirsyncer
-    alacritty
     gimp
     alsa-utils
     flameshot
