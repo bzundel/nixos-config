@@ -90,6 +90,8 @@ in
     networkmanagerapplet
   ];
 
+  services.caffeine.enable = true;
+
   programs.gnome-dash-to-dock = {
     enable = true;
 

@@ -5,6 +5,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
 
 mod = "mod1"
+modsuper = "mod4"
 terminal = "kitty"
 
 @hook.subscribe.startup_once
@@ -41,6 +42,7 @@ keys = [
     Key([mod, "shift"], "e", lazy.shutdown(), desc="Exit Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "p", lazy.spawn("dmenu_run")),
+    Key([modsuper], "l", lazy.spawn("slock")),
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Switch to next keyboard layout"),
 
     Key([], "XF86AudioLowerVolume", lazy.widget["volume"].decrease_vol(), desc="Decrease volume"),

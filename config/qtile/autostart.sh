@@ -2,3 +2,4 @@
 
 flameshot &
 nm-applet &
+xsetroot -solid black
