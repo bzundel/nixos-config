@@ -1,7 +1,7 @@
 import os
 import subprocess
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord, ScratchPad, DropDown, Match
 from libqtile.lazy import lazy
 from widgets.systemd_service_widget import SystemdServiceWidget
 
@@ -74,26 +74,24 @@ for vt in range(1, 8):
         )
     )
 
+groups = [
+    Group("term"),
+    Group("www", matches=[Match(wm_class=["firefox"])]),
+    Group("dev"),
+    Group("msg", layout="TreeTab", matches=[Match(wm_class=["thunderbird"]), Match(wm_class=["element"])]),
+    Group("media"),
+    ScratchPad("scratchpad", [DropDown("terminal", terminal, opacity=0.8)]),
+]
 
-groups = [Group(i) for i in "123456789"]
+for i, group in enumerate(groups):
+    keys.extend([
+        Key([mod], str(i + 1), lazy.group[group.name].toscreen(), desc=f"Switch to group {group.name}"),
+        Key([mod, "shift"], str(i + 1), lazy.window.togroup(group.name, switch_group=True), desc=f"Switch to and move window to group {group.name}"),
+    ])
 
-for i in groups:
-    keys.extend(
-        [
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc=f"Switch to group {i.name}",
-            ),
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc=f"Switch to & move focused window to group {i.name}",
-            ),
-        ]
-    )
+keys.extend([
+    Key([mod], "0", lazy.group["scratchpad"].dropdown_toggle("terminal")),
+])
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),

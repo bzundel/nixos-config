@@ -99,6 +99,12 @@ in
       package = pkgs.yaru-theme;
       name = "Yaru-purple-dark";
     };
+
+    settings = {
+      global = {
+        origin = "top-right";
+      };
+    };
   };
 
   programs.gnome-dash-to-dock = {
