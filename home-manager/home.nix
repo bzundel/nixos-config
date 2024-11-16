@@ -92,6 +92,15 @@ in
 
   services.caffeine.enable = true;
 
+  services.dunst = {
+    enable = true;
+
+    iconTheme = {
+      package = pkgs.yaru-theme;
+      name = "Yaru-purple-dark";
+    };
+  };
+
   programs.gnome-dash-to-dock = {
     enable = true;
 
@@ -272,8 +281,9 @@ in
       source = ../config/kitty/kitty.conf;
     };
 
-    ".config/qtile/config.py" = {
-      source = ../config/qtile/config.py;
+    ".config/qtile" = {
+      source = ../config/qtile;
+      recursive = true;
     };
 
     ".config/qtile/autostart.sh" = {

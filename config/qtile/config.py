@@ -3,6 +3,7 @@ import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
+from widgets.systemd_service_widget import SystemdServiceWidget
 
 mod = "mod1"
 modsuper = "mod4"
@@ -11,7 +12,7 @@ terminal = "kitty"
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
-    subprocess.call(home)
+    subprocess.call(["sh", home])
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -44,6 +45,7 @@ keys = [
     Key([mod], "p", lazy.spawn("dmenu_run")),
     Key([modsuper], "l", lazy.spawn("slock")),
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Switch to next keyboard layout"),
+    Key([mod], "b", lazy.hide_show_bar(), desc="Toggle the bar"),
 
     Key([], "XF86AudioLowerVolume", lazy.widget["volume"].decrease_vol(), desc="Decrease volume"),
     Key([], "XF86AudioRaiseVolume", lazy.widget["volume"].increase_vol(), desc="Increase volume"),
@@ -55,7 +57,7 @@ keys = [
         Key([], "t", lazy.spawn("thunderbird"), desc="Launch thunderbird"),
         Key([], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
         ],
-        mode="Launch"
+        name="Launch"
     ),
 ]
 
@@ -115,6 +117,8 @@ screens = [
                 widget.WindowName(),
                 widget.Chord(name_transform=lambda name: name.upper()),
                 widget.Systray(),
+                widget.Sep(),
+                SystemdServiceWidget("rclone-onedrive"),
                 widget.Sep(),
                 widget.DF(visible_on_warn=False, format="{p} {r:.2f}%"),
                 widget.Sep(),
