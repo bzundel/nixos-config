@@ -76,7 +76,7 @@ for vt in range(1, 8):
 
 groups = [
     Group("term"),
-    Group("www", matches=[Match(wm_class=["firefox"])]),
+    Group("www"),
     Group("dev"),
     Group("msg", layout="TreeTab", matches=[Match(wm_class=["thunderbird"]), Match(wm_class=["element"])]),
     Group("media"),
