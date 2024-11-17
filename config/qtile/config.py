@@ -119,6 +119,8 @@ screens = [
                 widget.Chord(name_transform=lambda name: name.upper()),
                 widget.Systray(),
                 widget.Sep(),
+                widget.Wttr(location={"Frankfurt": "Home"}, format="%C, %t (feels like %f)"),
+                widget.Sep(),
                 SystemdServiceWidget("rclone-onedrive"),
                 widget.Sep(),
                 widget.DF(visible_on_warn=False, format="{p} {r:.2f}%"),
