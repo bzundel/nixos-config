@@ -125,19 +125,20 @@ screens = [
                 widget.Chord(name_transform=lambda name: name.upper()),
                 widget.Systray(),
                 widget.Sep(),
-                widget.Wttr(location={"Frankfurt": "Home"}, format="%C, %t (feels like %f)"),
+                widget.Wttr(location={"Frankfurt": "Home"}, format="%c%f"),
                 widget.Sep(),
-                SystemdServiceWidget("rclone-onedrive"),
+                SystemdServiceWidget(service_name="rclone-onedrive", display_name="Onedrive", show_icon=True),
                 widget.Sep(),
-                widget.DF(visible_on_warn=False, format="{p} {r:.2f}%"),
+                widget.DF(visible_on_warn=False, format="💾 {p} {r:.2f}%"),
                 widget.Sep(),
                 widget.KeyboardLayout(configured_keyboards=["us", "de"]),
                 widget.Sep(),
                 widget.Wlan(interface=hostname_wlan_interface[hostname], format="{essid} {percent:2.0%}"),
                 widget.Sep(),
+                #widget.Volume(unmute_format="🔊 {volume}%", mute_format="🔇"), # FIXME format options do not work
                 widget.Volume(),
                 widget.Sep(),
-                widget.Battery(format="{char} {percent:2.0%} {hour:d}:{min:02d}", notify_below = 20),
+                widget.Battery(format="{char} {percent:2.0%} {hour:d}:{min:02d}", low_percentage=0.2, notify_below=20, empty_char="🪫", discharge_char="🔋", charge_char="⚡", full_char="🔋"),
                 widget.Sep(),
                 widget.Clock(format="%Y-%m-%d %a %H:%M", fmt="<b>{}</b>"),
             ],
@@ -145,6 +146,39 @@ screens = [
         ),
     ),
 ]
+
+# top bar without icons (too full)
+# screens = [
+#     Screen(
+#         top=bar.Bar(
+#             [
+#                 widget.CurrentLayout(),
+#                 widget.GroupBox(),
+#                 widget.Prompt(),
+#                 widget.WindowName(),
+#                 widget.Chord(name_transform=lambda name: name.upper()),
+#                 widget.Systray(),
+#                 widget.Sep(),
+#                 widget.Wttr(location={"Frankfurt": "Home"}, format="%C, %t (feels like %f)"),
+#                 widget.Sep(),
+#                 SystemdServiceWidget("rclone-onedrive"),
+#                 widget.Sep(),
+#                 widget.DF(visible_on_warn=False, format="{p} {r:.2f}%"),
+#                 widget.Sep(),
+#                 widget.KeyboardLayout(configured_keyboards=["us", "de"]),
+#                 widget.Sep(),
+#                 widget.Wlan(interface=hostname_wlan_interface[hostname], format="{essid} {percent:2.0%}"),
+#                 widget.Sep(),
+#                 widget.Volume(),
+#                 widget.Sep(),
+#                 widget.Battery(format="{char} {percent:2.0%} {hour:d}:{min:02d}", notify_below = 20),
+#                 widget.Sep(),
+#                 widget.Clock(format="%Y-%m-%d %a %H:%M", fmt="<b>{}</b>"),
+#             ],
+#             24,
+#         ),
+#     ),
+# ]
 
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
