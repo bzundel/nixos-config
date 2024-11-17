@@ -82,7 +82,7 @@ for vt in range(1, 8):
 
 groups = [
     Group("term"),
-    Group("www", matches=[Match(wm_class=["firefox"])]),
+    Group("www"),
     Group("dev"),
     Group("notes", matches=[Match(wm_class=["obsidian"])]),
     Group("pass", matches=[Match(wm_class=["keepassxc"])]),
