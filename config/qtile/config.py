@@ -8,6 +8,12 @@ from widgets.systemd_service_widget import SystemdServiceWidget
 mod = "mod1"
 modsuper = "mod4"
 terminal = "kitty"
+hostname = subprocess.check_output(["hostname"]).decode().strip()
+
+hostname_wlan_interface = {
+    "cora": "wlp0s20f3",
+    "corapad": "wlp3s0",
+}
 
 @hook.subscribe.startup_once
 def autostart():
@@ -127,7 +133,7 @@ screens = [
                 widget.Sep(),
                 widget.KeyboardLayout(configured_keyboards=["us", "de"]),
                 widget.Sep(),
-                widget.Wlan(interface="wlp0s20f3", format="{essid} {percent:2.0%}"),
+                widget.Wlan(interface=hostname_wlan_interface[hostname], format="{essid} {percent:2.0%}"),
                 widget.Sep(),
                 widget.Volume(),
                 widget.Sep(),
