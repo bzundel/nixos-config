@@ -40,6 +40,7 @@ in
     inotify-tools
     gnumake
     gcc
+    python3
 
     #communication
     signal-desktop
