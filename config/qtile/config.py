@@ -137,7 +137,7 @@ screens = [
                 widget.Sep(),
                 widget.Volume(),
                 widget.Sep(),
-                widget.Battery(notify_below = 20),
+                widget.Battery(format="{char} {percent:2.0%} {hour:d}:{min:02d}", notify_below = 20),
                 widget.Sep(),
                 widget.Clock(format="%Y-%m-%d %a %H:%M", fmt="<b>{}</b>"),
             ],
