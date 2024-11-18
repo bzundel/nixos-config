@@ -33,10 +33,9 @@
       let mapleader=","
 
       map <space> /
-      nnoremap <Leader>n :noh<CR>
+      nnoremap <leader>n :noh<CR>
 
-      nnoremap <leader>n :NERDTreeFocus<CR>
-      nnoremap <C-n> :NERDTree<CR>
+      nnoremap <C-n> :NERDTreeFocus<CR>
       nnoremap <C-t> :NERDTreeToggle<CR>
       nnoremap <C-f> :NERDTreeFind<CR>
 
