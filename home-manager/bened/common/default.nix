@@ -16,7 +16,6 @@ in
     ./package-collections/communication.nix
     ./package-collections/entertainment.nix
     ./package-collections/qtile.nix
-    ./package-collections/gnome.nix
   ];
 
   nixpkgs = {
