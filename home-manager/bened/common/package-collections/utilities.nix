@@ -30,5 +30,6 @@
     gimp
     alsa-utils
     flameshot
+    qutebrowser
   ];
 }

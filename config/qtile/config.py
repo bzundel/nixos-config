@@ -61,6 +61,7 @@ keys = [
     KeyChord([mod], "o", [
         Key([], "c", lazy.spawn("kitty --hold khal calendar"), desc="Launch new kitty terminal showing khal calendar"),
         Key([], "f", lazy.spawn("firefox"), desc="Launch firefox"),
+        Key([], "q", lazy.spawn("qutebrowser"), desc="Launch qutebrowser"),
         Key([], "t", lazy.spawn("thunderbird"), desc="Launch thunderbird"),
         Key([], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
         ],
