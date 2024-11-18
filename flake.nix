@@ -64,6 +64,14 @@
           };
           modules = [ ./home-manager/bened/corapad.nix ];
         };
+
+        "bened@minicora" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./home-manager/bened/minicora.nix ];
+        };
       };
     };
 }
