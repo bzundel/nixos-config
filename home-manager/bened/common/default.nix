@@ -19,6 +19,7 @@ in
     ./package-collections/qtile.nix
     ./services/caffeine.nix
     ./services/dunst.nix
+    ./services/kdeconnect.nix
     ./systemd/rclone-onedrive.nix
     ./systemd/vdirsyncer-sync.nix
   ];

@@ -4,6 +4,7 @@
     ./fonts.nix
     ./gnome.nix
     ./localization.nix
+    ./networking.nix
     ./nix.nix
     ./postgresql.nix
     ./programs.nix
