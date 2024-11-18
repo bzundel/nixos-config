@@ -50,6 +50,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "p", lazy.spawn("dmenu_run")),
     Key([modsuper], "l", lazy.spawn("slock")),
+    Key([modsuper, "shift"], "l", lazy.spawn("lock_suspend.sh")),
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Switch to next keyboard layout"),
     Key([mod], "b", lazy.hide_show_bar(), desc="Toggle the bar"),
 
