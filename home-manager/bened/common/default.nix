@@ -8,6 +8,7 @@
 }:
 let
   unstable = inputs.nixpkgs-unstable;
+  scripts = inputs.scripts.packages."x86_64-linux".default;
 in
 {
   imports = [
@@ -16,7 +17,12 @@ in
     ./package-collections/communication.nix
     ./package-collections/entertainment.nix
     ./package-collections/qtile.nix
+    ./services/caffeine.nix
+    ./services/dunst.nix
+    ./systemd/rclone-onedrive.nix
   ];
+
+  home.packages = [ scripts ];
 
   nixpkgs = {
     overlays = [

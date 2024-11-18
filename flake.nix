@@ -9,6 +9,8 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    scripts.url = "github:bzundel/scripts";
   };
 
   outputs =
