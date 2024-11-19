@@ -14,6 +14,7 @@
       vim-polyglot
       vim-elixir
       ctrlp-vim
+      vim-just
     ];
 
     extraConfig = ''
