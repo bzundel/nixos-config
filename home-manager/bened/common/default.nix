@@ -20,6 +20,7 @@ in
     ./services/caffeine.nix
     ./services/dunst.nix
     ./services/kdeconnect.nix
+    ./services/redshift.nix
     ./systemd/rclone-onedrive.nix
     ./systemd/vdirsyncer-sync.nix
   ];
