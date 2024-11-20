@@ -1,10 +1,15 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ kitty ];
+  programs.kitty = {
+    enable = true;
 
-  home.file = {
-    ".config/kitty/kitty.conf" = {
-      source = ../../../../config/kitty/kitty.conf;
+    font = {
+      package = pkgs.terminus_font_ttf;
+      name = "Terminus";
+    };
+
+    settings = {
+      enable_audio_bell = false;
     };
   };
 }
