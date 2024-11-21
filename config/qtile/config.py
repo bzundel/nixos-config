@@ -91,7 +91,7 @@ groups = [
     Group("misc"),
     Group("msg", layout="TreeTab", matches=[Match(wm_class=["thunderbird"]), Match(wm_class=["element"])]),
     Group("media"),
-    ScratchPad("scratchpad", [DropDown("terminal", terminal, opacity=0.8)]),
+    ScratchPad("scratchpad", [DropDown("terminal", terminal, opacity=0.8, height=0.8, width=0.8)]),
 ]
 
 for i, group in enumerate(groups):
