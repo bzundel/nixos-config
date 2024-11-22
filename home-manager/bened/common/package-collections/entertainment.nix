@@ -4,5 +4,6 @@
     spotify
     calibre
     newsboat
+    sgt-puzzles
   ];
 }
