@@ -8,6 +8,7 @@
       elixir-lsp.vscode-elixir-ls
       bradlc.vscode-tailwindcss
       stefanjarina.vscode-eex-snippets
+      jnoortheen.nix-ide
     ];
   };
 }

@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../programs/vscode.nix
+  ];
+
   home.packages = with pkgs; [
     pgadmin4-desktopmode
     direnv
