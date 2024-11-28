@@ -15,6 +15,7 @@
         ExecStop = "/run/wrappers/bin/fusermount -u ${onedriveDir}";
         Restart = "on-failure";
         RestartSec = "10";
+        Environment = [ "PATH=/run/wrappers/bin/:$PATH" ];
       };
   };
 }
