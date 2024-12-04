@@ -1,3 +1,4 @@
+# FIXME clean this!
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [

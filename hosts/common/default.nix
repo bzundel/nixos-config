@@ -2,7 +2,6 @@
 {
   imports = [
     ./fonts.nix
-    ./gnome.nix
     ./localization.nix
     ./networking.nix
     ./nix.nix
@@ -13,6 +12,7 @@
     ./users.nix
     ./work.nix
     ./xserver.nix
+    ./optional/desktop/qtile.nix
   ];
 
   nixpkgs = {
