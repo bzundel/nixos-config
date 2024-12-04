@@ -13,3 +13,6 @@ Flake-based system configuration based on https://github.com/Misterio77/nix-star
 - Widget that compares local and upstream for changes (nix state)
 - Fork and expand battery widget to allow display of multiple batteries combined
     - Should take into account total capacity as a weight for total percentage
+
+# Qutebrowser
+- Add quickmarks to config
