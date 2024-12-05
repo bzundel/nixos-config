@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../programs/firefox.nix
     ../programs/newsboat.nix
     ../programs/tmux.nix
     ../programs/vdirsyncer.nix
@@ -11,25 +12,22 @@
   ];
 
   home.packages = with pkgs; [
-    keepassxc
-    obsidian
+    file
+    fzf
+    rclone
     mpv
     yt-dlp
-    rclone
-    xclip
-    unzip
-    file
-    remmina
-    fzf
-    gnupg
-    kdePackages.kleopatra
     zathura
-    khal
     pass
     vdirsyncer
-    gimp
+    khal
     alsa-utils
-    flameshot
+    keepassxc
+    obsidian
+    remmina
+    gnupg
+    kdePackages.kleopatra
+    gimp
     qutebrowser
   ];
 }

@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
+  home.packages = [
+    pkgs.newsboat
+  ];
+  
   programs.newsboat = {
     enable = true;
 
